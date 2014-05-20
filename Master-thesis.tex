@@ -1,0 +1,816 @@
+\documentclass[12pt, a4paper]{article}
+
+
+%%%%%%%%%%%% 邊界 %%%%%%%%%%%%%%%
+\usepackage[left=3cm,right=3cm,top=4cm,bottom=3cm]{geometry}
+\linespread{1.5}     %1.1倍行距
+
+
+%%%%%%%%%%%% 數學套件%%%%%%%%%%%%%
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{CJKutf8}
+%\usepackage{txfonts}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{enumerate}
+
+
+%%%%%%%%%%定理設定%%%%%%%%%%%%%%%%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+
+
+\numberwithin{equation}{section}
+\newcommand{\sol}{\textit{Solution:}}
+
+
+ 
+%%%%%%%% 字型設定 %%%%%%%%%
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+
+%%%%%%%%特殊數學符號%%%%%%%%%%%%%%%
+\newcommand{\hmu}{\hat{\mu}}
+
+
+%%%%%%%%%%%%%粗體%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\named}[1]{\textnormal{\textbf{#1}}}
+ 
+%%%%%%%%%% 聲稱 %%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\claim}[1]{\textnormal{\underline{\textbf{Claim #1}}: }}
+
+
+%%%%%%%%%%%%%%%%% 微分記號 %%%%%%%%%%%%%
+\renewcommand{\d}[2]{\frac{d #1}{d #2}}
+\newcommand{\dd}[2]{\frac{d^2 #1}{d #2^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}} 
+\newcommand{\pddm}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}} 
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}\right)}
+
+
+
+
+\begin{document}
+\begin{CJK}{UTF8}{bkai}
+\title{\Large
+		國立臺灣大學理學院數學系 \\
+		碩士論文 \\
+		Department of Mathematics College of Science 	\\
+		National Taiwan University \\
+		Master Thesis Dissertation\\ \quad \\
+		高維度的Allen-Cahn方程之非平面行波解及相關問題 \\
+		High Dimensional Non-planar Traveling Wave Solution for Allen-Cahn Equation and  Related Topics
+		}
+
+
+\author{\large
+		\quad \\
+		呂居謙 \\
+		Chu-Chien Lu\\
+		\quad \\
+		指導教授： 陳俊全 博士\\
+		Advisor: Chiun-Chuan Chen, Ph.D.
+		}
+
+\date{
+		\quad \\
+		\quad \\
+		中華民國 103 年 6 月 \\
+		June 2014
+		}
+
+\maketitle
+
+
+\thispagestyle{empty}
+	
+\clearpage
+
+
+
+\pagenumbering{roman}
+
+
+
+
+\addcontentsline{toc}{section}{口試委員審定書}
+	\quad
+
+\clearpage
+
+
+\addcontentsline{toc}{section}{致謝}
+
+\begin{center} \large 致謝 \end{center}
+感謝...
+
+\clearpage
+
+
+
+
+
+
+
+
+\addcontentsline{toc}{section}{中文摘要}
+
+\begin{center} \large 中文摘要 \end{center}
+	本文透過建造上下解以及使用單調疊代法來建構高維度的Allen-Cahn方程式 $u_t=D\Delta u+f(u)$ 的非平面行波解‧ 並透過此種方法來討論其自由邊界問題的上下解.
+\clearpage
+
+
+
+
+\addcontentsline{toc}{section}{英文摘要}
+	
+	\begin{center}\bf Abstract \end{center}
+		In this thesis, we  discuss the non-planar traveling wave solution for the Allen-Cahn reaction-diffusion equation in  high dimension
+	\[
+		u_t=D\Delta u+f(u)
+	\]
+	by constrcuting  sup-sub solutions and use the monotonic iteration method. Also, we use this method to discuss the sup/subsolution for free boundary problem.
+\clearpage
+	
+	\thispagestyle{empty}
+	\renewcommand\contentsname{目錄 Contents}
+	\tableofcontents
+	\pagenumbering{arabic}
+	
+	\clearpage
+	
+	\setcounter{page}{1}
+
+
+
+
+\section{Introduction}
+\subsection{Reaction-Diffusion equation: the traveling wave solution for bistable case}
+	The traditional reaction-diffusion equation in $\R^N$ is
+\begin{equation}
+\begin{cases}
+	u_t=D\Delta u+f(u),\quad x\in\R^N,\,t>0\\
+	u\big|_{t=0}=u_0(x),\,x\in\R^N
+\end{cases}
+\end{equation}
+where $u(x,t):\R^N\times(0,\infty)\to\R$ is an unknown function, $t$ is the time variable, $N\geq 2$, $D=dia(d_j)$ with $d_j>0$, which indicates the spreading coefficients, and $\Delta$ is the standard Laplacian operator. It has been studied for many years. In this thesis, we consider the case that $f$ is of the bistable type. A special case of bistable type called the Allen-Cahn equation, which is introduced in \cite{AC1979} in 1979. Especially, we are interesting in the solution of the form $u(x,t)=U(x,x_N-ct)$, called the traveling wave solution. Here $U$ is called the profile and $c$ is called the speed. Set $z=x_N-ct$, the traveling wave solution $(c,U)$ satisfies
+\begin{equation}\label{iden1.2}
+\begin{cases}
+	\Delta u+c\pd{U}{x_N}+f(U)=0\\
+	\lim\limits_{z\to\pm\infty}U(x,z)=\pm1
+\end{cases}.
+\end{equation}
+In one dimension, it is well-know that there exists a unique $c$ and solution $\Phi$ satisfies the following Cauchy problem
+\[
+\begin{cases}
+	\Phi''(z)+c\Phi'(z)+f(\Phi(y))=0\\
+	\Phi(\pm\infty)=\mp1,\,\Phi(0)=0.
+\end{cases}
+\].
+	
+	In this case that $f$ is balanced, that is, $f=u-u^3$, and $c=0$, the famous De Giorgi conjectures is that
+\begin{conj}\cite{DG1979}
+Let $u\in C^2(\R^n)$ be a solution of
+\begin{equation}
+	\Delta u =u-u^3,\mbox{ in }\R^N
+\end{equation}
+such that $\pd{u}{x_N}>0$ in the whole $\R^N$. Is it true that all level sets $\{u=\lambda\}$ of $u$ are hyperplanes, at least
+if $n\leq 8$?
+\end{conj}
+
+	The problem was solved for $N=2$ by Ghoussoub and Gui in \cite{GG1998}, $N=3$ by Ambrosio and  Cabr\'e in \cite{AC2000}. For $4\leq N\leq 8$, under an additional assumption $u(x',x_N)\to\pm 1$ as $x_N\to\pm\infty$, Savin solved the problem in \cite{Sa2009}. For $N\geq 9$, there is a counter example by Dei Pino, Kowalczyk, and Wei, see\cite{DKW2008}. If we take out the monotone condition, there are various kinds of shape of wave solutions, and we try to classify them all.
+
+	Besides, it is natural to ask whether the De Girogi conjectures holds for parabolic equation. More pricisely, consider $u_t=\Delta u+u-u^3$ with $u_{x_N}>0$ and $u(x)\to\pm1$ as $x_N\to\pm\infty$, must $\{u=\lambda\}$ be a hyperplane? The answer is false, see \cite{CGHNR2004}. 
+
+	The $V$-shaped front solutions have beed studied by Ninomiya and Taniguchi \cite{NT2005, NT2006}, et al by considering the mean curvature equation. The existence of  pyramidal shaped traveling front, which we will later focus on, for general bistable case, is contructed by Ni and Taniguchi \cite{NT2013}. The stability for traveling waves was studied as well. The case of planar waves was consider by \cite{LX1992,MNT2009}, high dimensional $V$-shaped traveling fronts was established by Sheng, Li, and Wang in \cite{CLW2013} using various kinds of sup-sub solutions methods and the stability of pyramidal traveling wave solutions in three dimensional was proved by Taniguchi [Ta2007] and we remark that the method used in three dimensional case can not be simply extended to much higher dimension.
+
+\subsection{Logistic case, the free boundary problem}
+
+	Another famous kind of reaction diffusion equation is the logistic type, namely the reaction term $f$ is of the form $u(a-bu)$. The well-known result is that there exists a minimal speed $c^*$ such that for all $c\geq c^*$ there exists a correponding traveling wave solution. The asymptotic behavior has been completely studied in \cite{Sa1976} for general monostable type $f$. Recently, the free boundary problem of Fisher-KPP type equation has been well-studied in by Du and Gou in \cite{DG2012}, they investigate the following stefan problem
+\begin{equation}\label{iden1.4}
+\begin{cases}
+	u_t-d\Delta u=g(x,u),\,\mbox{ for }x\in\Omega(t),\,t>0\\
+	u=0\mbox{ and }u_t=\mu|\nabla u|^2,\,\mbox{ for }x\in\Gamma(t),\,t>0\\
+	u(x,0)=u_0(x)
+\end{cases}
+\end{equation}
+They gives the weak fomulation for (\ref{iden1.4}) and prove the existence and uniqueness of the weak solution for general non-aotunomous Lipschitz nonlinearity $g(x,u)$, and also gives some initial domain comparison results and asymptotic behavior as $\mu\to\infty$. The most important and surprising result is the spreading-vanishing dichotomy. The limit solution converges to the solution of the elliptic problem in the whole space. In a sucessful invansion, it has a limit speed which allows us the consider the travling wave problem. For the case that $a(x)=a, b(x)=b$ are constant, set $u(x,t)=u(x',x_N-ct)$, then the profile must satisfy
+\begin{equation}
+\begin{cases}
+	-d\Delta u-c\pd{u}{x_N}=au-bu^2,\,\mbox{ for }x\in\Omega_{x'}=\{x_N\leq h(x')\},\\
+	u=0\mbox{ and }c=-\mu\pd{u}{x_N}(1+|\nabla_{x'}h|^2),\,\mbox{ for }x\in\Gamma_{x'}\\
+\end{cases}
+\end{equation}
+	If the nonliearity is replaced by Allen-Cahn type, we hope the argument for pyramidal traveling solution we shall introduce later will also work for the free problem with slight modification in supersolution.
+
+
+
+
+
+
+
+
+\section{Pyramidal Shaped Traveling Fronts}
+
+	In this section, we give the contruction of the traveling based on the proof in \cite{KT2011}. We always assume that
+\begin{enumerate}
+	\item[(A1)]  $f$ is of class $C^1$ with $f(1)=f(-1)=0$ and $f'(-1),f'(1)<0$.
+	\item[(A2)] $\int_{-1}^1f>0$.
+	\item[(A3)] There exists $\Phi(y)$ satisfying the one dimensional problem for some $k>0$, that is, $\Phi$ satisfies
+	\begin{equation}\label{iden2.1}
+	\begin{cases}
+		-\Phi''(y)-k\phi'(y)-f(\Phi(y))=0,\,y\in\R,\\
+		\Phi(-\infty)=1,\,\Phi(\infty)=-1,\\
+		\Phi(0)=0
+	\end{cases}
+	\end{equation}
+	(The reason for $\Phi(0)$ is we have to fix a phase since traveling wave solution is invariant under translation.)
+\end{enumerate}
+in this section.
+
+
+	For general bistable type $f$ and system case, one can see similar assumption above in \cite{NT2013} and we remark that the well-known Lokta-Volterra competition system 
+\begin{equation}
+\begin{cases}
+	\pd{u}{t}=\Delta u+u(1-u-c_0v)\\
+	\pd{v}{t}=d\Delta v+v(a_0-b_0u-v)\\
+	u(x,0)=u_0(x),\,v(x,0)=v_0(x)
+\end{cases}
+\end{equation}
+satisfies the assumptions about the monotonicity and bistable condition by reconsidering $u_1=u$, $u_2=1-\frac{v}{a_0}$, $D=dia(1,d)$, and $f(u_1,u_2)=(u_1(1-c_0a_0-u_1+c_0a_0u_2),\,(1-u_2)(b_0u_1-a_0u_2))^t$.
+
+
+	Without loss of generality, we may assume that the wave is moving toward to the $x_N$-axis with speed $c$. If $x=(x_1,\cdots,x_{N-1},x_N)\in\R^N$, we denote $x'=(x_1,\cdots,x_{N_1})\in\R^{N-1}$, and set $z=x_N-ct$ and $u(x,t)=U(x',z,t)$, for simplicity we sitll denoted by $U(x,t)$. Then $U$ must satisfies
+\begin{equation}\label{iden2.3}
+\begin{cases}
+	U_t-D\Delta U-c\pd{W}{x_N}-f(U)=0,\,\mbox{ in }\R^n,\,t>0\\
+	U\big|_{t=0}=u_0(x),\,\mbox{ in }\R^n.
+\end{cases}
+\end{equation}
+We denote the solution of (\ref{iden2.3}) by $U(x,t;u_0)$.
+
+
+If $v$ is a traveling wave solution, it must satisfies the elliptic profile equation
+\begin{equation}\label{iden2.4}
+	-D\Delta v-c\pd{v}{x_N}-f(v)=0\mbox{ in }\R^N
+\end{equation}
+and we denote $\L[v]=-D\Delta v-c\pd{v}{x_N}-f(v)$ a nonlinear operator for all $v\in C^2(\R^n)$. Throughout this section, we assume that $c>k$. This because curvature flow effect, see \cite{NT2006}, also we set an important quantity
+\begin{equation}
+	m_*=\frac{\sqrt{c^2-k^2}}{k}>0
+\end{equation}
+
+The main theorem is the following
+
+\begin{thm}\cite[Theorem~1.1]{KT2011}\label{thm2.1}
+	Assume $(A1)-(A3)$. Let $c>k$, and let $\bar{v}$ be given by (\ref{iden2.14}), then there exists a solution $V(x)$ of (\ref{iden2.4}) such that 
+\begin{equation}
+	\lim_{\gamma\to\infty}\sup_{x\in D(\gamma)}|V(x)-\bar{v}(x)|=0,\quad \bar{x}<V(x)<1,\quad\forall\,x\in\R^N.
+\end{equation}
+and 
+\begin{equation}
+	\pd{V}{x_N}(x)<0,\quad\forall\,x\in\R^N.
+\end{equation}
+where $D(\gamma)$ is given in (\ref{iden2.13}).
+\end{thm}
+
+
+
+\subsection{Monotone Iteration}
+
+	In this subsection, we introduce a monotone iteration established by Sattinger in \cite{Sa1972}. Throughout in this section, we consider a second order uniformly elliptic operator
+\[
+	L=\sum_{i,j=1}^Na_{ij}D_{ij}+\sum_{i=1}^N b_iD_{i}
+\]
+and $B$ is the boundary operator such that
+\[
+	Bu=u\mbox{ or }Bu=\pd{u}{\nu}+\beta(x)u\quad\forall\,x\in\partial D,
+\]
+where $\pd{}{\nu}$ is the outer-normal derivative and $D$ is a $C^{2,\alpha}$ domain. The main quest is to connect the sup/sub solution of the nonlinear elliptic boundary problem
+\begin{equation}\label{iden2.8}
+\begin{cases}
+	Lu+f(x,u)=\mbox{ in }D\\
+	Bu=g\mbox{ on }\partial D
+\end{cases}
+\end{equation} 
+to the solution of it via the parabolic flow
+\begin{equation}\label{iden2.9}
+\begin{cases}
+	Lu+f(x,u)-\pd{u}{t}=0\mbox{ in }D\\
+	u(x,0)=u_0(x)\\
+	Bu=g\mbox{ on }\partial D_T
+\end{cases},
+\end{equation}
+where $D_T=D\times(0,T)$ and $f(x,u)$ is $C^1$ in $u$ and H\"older continuus in $x$.
+
+	Let $L^*$ be the adjoint operator of $L$
+\begin{defn}
+	Define $D(L^*)$ be the domain of $L^*$. We say that $u_0$ is a \named{weak lower (upper) solution} if $u_0$ is bounded and mearsurable on $D$ satisfying
+\begin{equation}
+	\iint_{D}u_0L^*\varphi+f(x,u_0)\varphi\,dx\geq(\leq) 0.
+\end{equation}
+for all $\varphi>0$ belongs to $D(L^*)$. 
+\end{defn}
+
+\begin{thm}\cite[Theorem 3.4]{Sa1972}
+	Let $u_0$ be a weak lower (upper) solution and let $u(x,t)$ be satisfy the initial value problem in the region $\Gamma_T$. Then $\pd{u}{t}\geq\,(\leq)0$ in $D_T$.
+\end{thm}
+ 
+This Theorem tells us that our subsolution will increase and supersolution will decrease, so if they have a sutiable order and the maximum principle allows us to take $t\to\infty$ to the parabolic solution, and we hope it converges to a solution for elliptic problem. Indeed, let us prove 
+
+\begin{thm}[Monotone Iteration]\cite[Theorem3.6]{Sa1972}\label{thm2.4}
+	Let $u_0$ and $v_0$ be lower and upper solution of the elliptic equation with $u_0\leq v_0$. Let $u$ and $v$ be the solutions of the initial value problem with initial data $u_0$ and $v_0$ respectively, and $Bu=0$. Then $u(x,t)\nearrow \tilde{u}(x)$ and $v(x,t)\searrow \tilde{v}(x)$ with $\tilde{u}\leq\tilde{v}$ and $\tilde{v},\tilde{u}$ are regular solution of the elliptic boundary value problem.
+\end{thm}
+
+
+
+
+\subsection{Pyramid and the weak sub-solution}
+
+	We first give the definition of Pyramid. Given $\{A_j\}$, $1\leq j\leq n$ be $n$ distinct unit vectors in $\R^{N-1}$. Each vector admits a plane in $\R^N$ through
+\[
+	x_N=\ell_j(x')\coloneqq m_*A_j\cdot x'
+\]
+Let $\ell(x')=\max\limits_{1\leq j\leq n}\ell_j(x')$, then $\{(x',x_N)\in\R^n\,|\, x_N=\ell(x')\}$ is called the $N$-dimensional pyramid in $\R^N$.
+
+We give some notations:
+\begin{align}
+	\Omega_j&=\{x'\in\R^{N-1}\,|\,\ell(x')=\ell_j(x')\},\mbox{ the base points,}\\
+	\Gamma_i&=\{x\in\R^N\,|\,x_N=\ell_j(x)\},\mbox{ the edge of pyramid,}\\
+	D(\gamma)&=\left\{x\in\R^N\,|\,d\left(x,\bigcup_{j=1}^n\Gamma_i\right)>\gamma\right\},\mbox{ points away from the edge.}\label{iden2.13}
+\end{align}
+
+
+	To construct a subsolution of pyramidal shaped, we pose a planar solution $\Phi\left(\frac{k}{c}(x_N-\ell_j(x'))\right)$ on each plane $x_N=\ell_j(x')$. Then by taking maximum, we get the subsolution, that is,
+\begin{equation}\label{iden2.14}
+	\underline{v}\coloneqq\max_{1\leq j\leq n}\Phi\left(\frac{k}{c}(x_N-\ell_j(x'))\right).
+\end{equation}
+
+	Indeed, except for those points on the $\bigcup\limits_{j=1}^n\Gamma_j$, direclt calculation if $x\in\Omega_j$ we obtain
+\begin{align*}
+	\L[\underline{v}]=-D\Delta\underline{v}-c\pd{\underline{v}}{x_N}-f(\underline{v})\leq \frac{k^2}{c^2}(m_*^2|A_j|^2+1^2)D\Phi_j''-c\cdot\frac{k}{c}\Phi_j'-f(\Phi_j)=0
+\end{align*}
+by (A3).
+
+
+
+
+
+
+\subsection{Supersolution}
+	In this section, we show that the function
+\[
+	\bar{v}=\Phi(\hat{\mu})+\varepsilon S(\alpha x')
+\]
+is a supersolution. The ideal of the supersolution is we pose the planar wave with a slightly addition term on a flat surface, where the edge at infinity keeps the pyramidal shaped and the additional term takes positive value near the edges and decade to $0$ fast as $\xi=\alpha x$  move away from the edges. The parameter $\alpha$ is small to rescale the spatial variables that makes the surface flat enough. Also, the supersolution tends the planar wave as $\alpha$  tends to $0^+$ in a slower speed $k$, so if we use the faster moving coordinate of speed $c$, we expect that $U(x,t;\bar{v})$ is monotonic decreasing in $t$. Hence it seems that $\bar{v}$ is a supersolution for elliptic problem
+
+	Now let $\tilde{\rho}(r)\in C^\infty[0,\infty)$ be a smooth kernel such that $\tilde{\rho}(r)$ is $1$ for $\rho$ small and asymptotic behavior is $e^{-r}$. Set a radial symmetry planet like kernel $\rho(x)=\tilde{\rho}(|x|)$. Directly calculation one can show that
+\[
+	(\rho*x_i)(y')=y'\mbox{ and hence }(\rho*\ell_j)(x')=\ell_j(x').
+\]
+We put $\varphi(x')=(\rho*\ell)(x')$ and $x_N=\varphi(x')$ is called the mollified pyramid for a pyramid $x_N=\ell(x')$. And we put
+\begin{equation}\label{iden2.15}
+	S(x')=\frac{c}{\sqrt{1+|\nabla\varphi(x')|^2}}-k
+\end{equation}
+$S$ indicates diffenece between normal vector direction effect of  speed $c$ on the mollified pyramid and $k$. 
+
+We gives two important lemmas about the estimations for the mollified pyramid and $S$.
+
+\begin{lemma}\cite[Lemma 2.2]{KT2011}\label{lem2.5}
+	Let $\varphi$ and $S$ is given as above. Then one has
+\[
+	\ell(x')<\varphi(x')\leq \ell(x')+m^*\int_{\R^N}|y'|\rho(y')\,dy,\quad\forall\,x'\in\R^{N-1}
+\]
+\[
+	|\nabla\varphi|<m_*,\quad 0<S(x')\leq c-k\quad\forall\,x\in\R^{N-1}
+\]
+and
+\[
+	\sup_{x'\in\R^N}\left|D^{\alpha}_{x'}\varphi(x')\right|<\infty
+\]
+for all $|\alpha|\geq 0$.
+\end{lemma}
+
+\begin{lemma}\cite[Proposition 2.3]{KT2011}\label{lem2.6}
+	One also have
+\[
+	0<\inf_{x'\in\R^{N-1}}\frac{\varphi(x')-h(x')}{S(x')}\leq\sup_{x'\in\R^{N-1}}\frac{\varphi(x')-h(x')}{S(x')}<\infty.
+\]
+For every multi-index $\alpha\in(\Z^+)^{N-1}$ with $|\alpha|=2,3$,
+\[
+	\sup_{x'\in\R^{N-1}}\left|\frac{D^\alpha_{x'}\varphi(x')}{S(x')}\right|<\infty
+\]
+holds true.
+\end{lemma}
+
+For $\alpha$ small, positve, we consider the surface
+\begin{equation}
+	\{x\in\R^N\,|\,x_N=\frac{1}{\alpha}\varphi(\alpha x')\}
+\end{equation}
+and set $\alpha x=\xi$, then we can represent the flat plane by $\xi_N=\varphi(\xi')$. For given $x'\in\R^{N-1}$, then unit normal vector at $(x',x_N)$ on the surface $\xi_N=\varphi(\xi')$ is given by
+\[
+	\frac{|x_N-\frac{1}{\alpha}\varphi(\alpha x')|}{\sqrt{1+|\nabla\varphi(\alpha x')|^2}}
+\]
+So we define
+\begin{equation}\label{iden2.17}
+	\hmu=\frac{x_N-\frac{1}{\alpha}\varphi(\alpha x')}{\sqrt{1+|\nabla\varphi(\alpha x')|^2}}.
+\end{equation}
+Define 
+\begin{equation}\label{iden2.18}
+	\bar{v}=\Phi(\hat{\mu})+\varepsilon S(\alpha x')\coloneqq \Phi(\hmu)+\sigma(x').
+\end{equation}
+where $\varepsilon>0$ is undetermined small parameter. 
+
+
+
+\begin{thm}
+	Let $\bar{v}$ is given by (\ref{iden2.18}), then $\bar{v}$ is a supersolution of (\ref{iden2.4}) with $\underline{v}<\bar{v}$.
+\end{thm}
+\begin{proof}
+	Simple and straightforward calculation we can obtain the following identities which involved in the term of $\L[\bar{v}]$:
+\begin{align*}
+	&\pd{\hmu}{x_N}=\frac{1}{\sqrt{1+|\nabla\varphi|^2}},\quad\pdd{\hmu}{x_N}=0\\
+	&\pd{\hmu}{x_i}=\frac{-1}{\sqrt{1+|\nabla\varphi|^2}}\pd{\varphi}{\xi}+\alpha\hmu F_i,\quad\pdd{\mu}{x_i}=\alpha G_i+\alpha^2\hmu H_i
+\end{align*}
+where
+\begin{align}
+	F_i(\xi')&=\sqrt{1+|\nabla\varphi|^2}\pd{}{\xi_i}\left(\frac{1}{\sqrt{1+|\nabla\varphi|^2}}\right)\\
+	G_i(\xi')&=-\pd{}{\xi}\left(\frac{1}{\sqrt{1+|\nabla\varphi|^2}\pd{\varphi}{\xi_i}}\right)-\frac{F_i(\xi')}{\sqrt{1+|\nabla\varphi|^2}}\frac{\varphi}{\xi_i}\\
+	H_i(\xi')&=\pd{F_i}{\xi_i}\,F_i(\xi')^2.
+\end{align}
+Substitue those identities, we obtain that
+\begin{align*}
+	L[\bar{v}]&=-\sum_{i=1}^N\pdd{\bar{v}}{x_i}-c\pd{\bar{v}}{x_N}-f(\bar{v})\\
+		&=-\Phi(\hmu)\sum_{i=1}^{N-1}(\alpha G_i+\alpha^2\hmu H_i)-\Phi''(\hmu)\left(\frac{|\nabla\varphi|^2}{1+|\nabla\varphi|^2}\right)\\
+		&\quad\quad+\Phi''(\hmu)\sum_{i=1}^{N-1}\left(\frac{2\alpha\hmu F_i}{\sqrt{1+|\nabla\varphi|^2}}\pd{\varphi}{\xi_i}-\alpha^2\hmu^2(F_i)^2\right)-\sum_{i=1}^{N-1}\pdd{\sigma}{x_i}\\
+		&\quad\quad -\frac{1}{1+|\nabla\varphi|^2}\Phi''(\hmu)-\frac{c}{\sqrt{1+|\nabla\varphi|^2}}\Phi'(\hmu)-f(\bar{v})\\
+		&=-\Phi''(\hmu)-\frac{c}{\sqrt{1+|\nabla\varphi|^2}}\Phi'(\hmu)+f(\Phi(\hmu)-\sigma)+\alpha Y(\xi',\hmu;\varepsilon,\alpha)
+\end{align*}
+where
+\begin{align*}
+	Y(\xi,\hmu;\varepsilon,\alpha)&\coloneqq -\Phi(\hmu)\sum_{i=1}^{N-1}( G_i+\alpha\hmu H_i)+\Phi''(\hmu)\sum_{i=1}^{N-1}\left(\frac{2\hmu F_i}{\sqrt{1+|\nabla\varphi|^2}}\pd{\varphi}{\xi_i}-\alpha\hmu^2(F_i)^2\right)\\
+		&\quad\quad-\varepsilon\alpha\sum_{i=1}^{N-1}\pdd{S}{\xi_i}
+\end{align*}
+
+
+Fundamental theorem of calculus yields that 
+\[
+	\sigma\int_0^1f'(\Phi(\hmu+s\sigma))\,ds=f(\Phi(\hmu)+\sigma)-f(\Phi(\hmu))
+\]
+So
+\[
+	L[\bar{v}]=-\Phi'(\hmu)S(\xi')-\sigma\int_0^1f'(\Phi(\hmu+s\sigma))\,dx+\alpha Y(\xi,\hmu;\varepsilon,\alpha).
+\]
+
+Observe that, all the terms in $Y$ can be dominated as follow:
+\[
+	|Y(\xi,y;\varepsilon,\alpha)|\leq \max\{|\Phi(y)|,|y\Phi(y)|,|y\Phi''(y)|,|y^2\Phi''(y)|\}\cdot\left(\sum_{i=1}^n|G_i|+|H_i|+2|F_i|+|F_i|^2+\left|\pdd{S}{\xi}\right|\right)
+\]
+Since those terms in $F_i,G_i,H_i$ is consisting of the second or third order derivative of $\varphi$, so Lemma \ref{lem2.6} can be applied. To estimate the maximum of the planar wave, we need a lemma
+
+\begin{lemma}\label{lem2.8}
+	Under assumption (A1) and (A3), $\Phi(y)$ as in (\ref{iden2.1}) satisfies
+\begin{align*}
+	-\Phi'(y)>0\quad\forall\,y\in\R\\
+	|\Phi'|,|\Phi''|\,\leq K_0e^{-\kappa_0|y|},\quad |y\Phi'|\leq\frac{2K_0}{e\kappa_0}e^{-\frac{\kappa}{2}|y|}
+\end{align*}
+for some positive constant $K_0$ and $\kappa_0$.
+\end{lemma} 
+
+Also, from the assupmtion of $f$ , there exists $\delta_*\in(0,\frac{1}{4})$ such that
+\[
+	-f'(s)>\frac{1}{2}\min\{-f'(1),-f'(-1)\}\mbox{ if }|s+1|<2\delta_*\mbox{ or }|s-1|<2\delta_*,
+\] 
+and according to the monotonicity of $\Phi$, there exists $s_*$ such that
+\[
+	\sup_{y\geq s_*}|\Phi(y)+1|<\delta_*\mbox{ and }\sup_{y\leq -s_*}|\Phi(y)-1|<\delta_*
+\]
+Set $\lambda_*=\min\{-\Phi'(y)\,|\,|y|\leq s_*\}$ and $M=\sup_{|s|\leq 1+\delta_*}|f'(s)|$.
+
+So there exists $\nu_*>0$, independent to $\xi',\alpha$ and $\varepsilon$, such that
+\[
+	\frac{|Y(\xi',y;\varepsilon,\alpha)|}{|S(\xi')|}<\nu_*
+\]
+for all $\xi'\in\R^{N-1}$, $y\in\R^N$, $\varepsilon,\alpha\in(0,1)$ and we conclude that
+
+\begin{equation}\label{iden2.22}
+	L[\bar{v}]\geq S(\xi)\left(-\Phi'(\hmu)+\varepsilon\int_0^1(-f'(\Phi(\hmu)+s\sigma))\,ds-\alpha\nu_*\right).
+\end{equation}
+
+Set
+\[
+	\omega=\inf_{x'\in\R^{N-1}}\frac{\varphi(x')-\ell(x')}{S(x')}\in(0,\infty)
+\]
+by Lemma \ref{lem2.6}. 
+
+Now we pick
+\begin{align}
+	0<&\varepsilon<\min\left\{\frac{1}{2},\frac{\delta_*}{c},\frac{4K_0}{ek\kappa_0},\frac{\lambda_*}{4M}\right\}\\
+	0<&\alpha<\min\left\{\frac{1}{2},\frac{\varepsilon\beta}{\nu_*},\frac{\lambda_*}{4\nu_*},\frac{k^2\omega\kappa_0}{2c\log(\frac{4K_0}{ek\kappa_0\varepsilon})}\right\}
+\end{align}
+
+We seperate our domian into two parts: (1) $\Phi(\hmu)<-1+\delta_*$ or $\Phi(\hmu)>1-\delta_*$, and (2) $\Phi(\hmu)\in[-1+\delta,1-\delta]$.
+For (1), first observe that for all $s\in[0,1]$, $|s\varepsilon S|\leq |s\varepsilon c|<\delta_*$ by our choice of $\varepsilon$. So
+\[
+	\Phi(\hmu)+\varepsilon S<-1+2\delta_*\mbox{ or }\Phi(\hmu)+\varepsilon S>1+2\delta_*
+\]
+and hence $-f(\bar{v})>\beta$ in this case. So (\ref{iden2.22}) becomes
+\[
+	\L[\bar{v}]\geq S(\xi')\left(-\Phi'(\hmu)+\varepsilon\beta-\alpha\nu_*\right)>0
+\]
+since $S,-\Phi'>$ and our choice of $\alpha$.
+
+In case (2), $-\Phi(\hmu)\geq\lambda_*$, and $-\varepsilon\int_0^1f'(\Phi+s\sigma)\,ds\geq-\varepsilon M$, so (\ref{iden2.22}) becomes
+\[
+	\L[\bar{v}]\geq S(\xi')\left(\lambda_*-\varepsilon M-\alpha\nu_*\right)>0
+\]
+So $\bar{v}$ is a supersolution.
+
+
+	We remain to show that $\bar{v}>\underline{v}$. The idea is to use the derivative of $\Phi$ to dominate the difference. It suffices to show that
+\begin{equation}
+	\Phi\left(\frac{k}{c}(x_N-h_j(x'))\right)<\bar{v}
+\end{equation}
+for any $j$. If 
+\[
+	\hmu\leq \frac{k}{c}(x_N-h_j)
+\]
+then by the monotonicity of $\Phi$, we have
+\[
+	\Phi\left(\frac{c}{k}(x_N-h_j(x'))\right)\leq\Phi(\hmu)<\bar{v}.
+\]
+So we only need to consider the case that
+\[
+	\hmu>\frac{k}{c}(x_N-h_j(x')).
+\]
+After substitue the definition of $\hmu$ and balanced with $h_j(x')$ and simple calculation, we obtain that
+\[
+	\frac{c}{\alpha}\left(\frac{1}{\sqrt{1+|\nabla\varphi|^2}}\right)\left(\frac{\varphi(\xi')-h_j(\xi')}{S(\xi')}\right)<x_N-h_j(x').
+\]
+So from the definition of $\omega$ and Lemma \ref{lem2.6}, we obtain
+\begin{equation}\label{iden2.25}
+	\frac{k\omega}{\alpha}<\frac{c}{\alpha}\frac{\omega}{\sqrt{1+|\nabla\varphi|^2}}<x_N-h_j(x')
+\end{equation}
+
+To let $\Phi'$ involve, directly compare $\bar{v}$ and $\underline{v}$,  since $h_j(x')=\frac{1}{\alpha}h_j(\xi')\leq\frac{1}{\alpha}h(\xi')\leq\frac{1}{\alpha}\varphi(\xi')$, the funcdamental theorem of calculus give that
+
+\[
+	\bar{v}-\underline{v}\geq\frac{(x_N-h_j(x')S(\xi'))}{c}\times\int_0^1\Phi'\left(\frac{\theta}{\sqrt{1+|\nabla\varphi|^2}}+\frac{k}{c}(1-\theta)\cdot(x_N-h_j(x'))\right)\,d\theta+\epsilon S(\xi')
+\]
+
+By Lemma \ref{lem2.5} and (\ref{iden2.25}), we have that
+\[
+	\bar{v}-\Phi\left(\frac{k}{c}(x_N-h(x'))\right)\geq-\frac{S(\xi')}{c}\sup_{|y|\geq\frac{k^2\omega}{c\alpha}}\left|\frac{c}{k}y\Phi'(y)\right|+\varepsilon S
+\]
+By Lemma \ref{lem2.8} and our choice of $\alpha$, we have
+\begin{align*}
+	\frac{1}{k}\sup_{|y|\geq\frac{k^2\omega}{c\alpha}}|y\Phi'(y)|&\leq\frac{1}{k}\frac{2K_0}{e\kappa_0}\exp(-\frac{\kappa_0}{2}\frac{k^2w}{c\alpha})\\
+		&<\frac{1}{k}\frac{2K_0}{e\kappa_0}\exp(-\frac{\kappa_0k^2\omega}{2c})\cdot\exp(\frac{k^2\omega\kappa_0}{2c})\cdot\frac{ek\kappa_0\varepsilon}{4K_0}\\
+		&<\frac{1}{2}\varepsilon
+\end{align*}
+
+So
+\[
+\bar{v}-\Phi\left(\frac{k}{c}(x_N-h(x'))\right)>\frac{\varepsilon S(\xi')}{2}>0
+\]
+and the proof is completed.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\subsection{Proof of Theorem \ref{thm2.1}}
+
+	First we need a nonlienar version of comparison theorem for nonlinear parabolic equations
+\begin{thm}\cite[Theorem 12, p187-188]{PW1967}
+	Let $D$ be a bounded domain in $\R^N$ and $E=D\times(0,T]$. Suppose that $u$ is a solution of $L[u]=f(x,t)$ in $E$ with 
+\[
+	L=\pd{}{t}-F\left(x,t,u,\pd{}{x_i},\pddm{}{x_i}{x_j}\right)
+\]
+where $F$ is a elliptic operator and that $u$ satisfies the initial and boundary condition
+\[
+\begin{cases}
+	u(x,0)=g_1(x)\mbox{ in }D\\
+	u(x,t)=g_2(x,t)\mbox{ in }\partial D\times(0,T)
+\end{cases}
+\]
+Assume that $z$ and $Z$ satisfy the inequality
+\[
+	L[z]\leq f(x,t)\leq L[Z]\mbox{ in }E
+\]
+and $L$ is parabolic with respect to the function $\theta u+(1-\theta)z$ and $\theta u+(1-\theta)Z$ for $0\leq \theta\leq 1$. If
+\begin{align*}
+	z(x,0)\leq g_1(x)\leq Z(x,0)\mbox{ in }D\\
+	z\leq g_2\leq Z\mbox{ on }\partial D\times(0,T)
+\end{align*}
+then
+\[
+	z(x,t)\leq u(x,t)\leq Z(x,t)\mbox{ in }E.
+\]
+\end{thm}
+
+Apply theorem \ref{thm2.4} to the sup/subsolution we constuction in previous sections and comparison Theorem above, we obtain that
+\[
+	\underline{v}(x)\leq U(x,t';\underline{v})\leq U(x,t;\bar{v})\leq\bar{v}
+\]
+and let
+\begin{equation}
+	V(x)=\lim_{t\to\infty} U(x,t;\underline{v})
+\end{equation}
+which is a solution of (\ref{iden2.4}). 
+
+\claim{}{For any $\varepsilon>0$, there exists $\gamma$ large enough such that
+\[
+	\sup_{x\in D(\gamma)}|\bar{v}(x)-\underline{v}(x)|<2\varepsilon.
+\]
+}
+Suppose, for contradiction, there exists a sequence of $\{\gamma_i\}\subseteq\R^+$ and $\{x_i\}\subseteq\R^N$ such that
+\begin{equation}
+	\lim_{i\to\infty}\gamma=\infty,\quad\quad x_i\in D(\gamma_i)
+\end{equation}
+and
+\begin{equation}\label{iden2.29}
+	\left|\Phi(\hmu_i)-\Phi\left(\frac{k}{c}(x_{N,i}-h(x_i'))\right)\right|\geq \varepsilon\quad\forall\, i\in\N
+\end{equation}
+
+However, from the definition of $\hmu$, we have
+\[
+	\hmu_i=\frac{x_{N,i}-h(x_i')-\frac{1}{\alpha}\tilde{\varphi}(\xi_i')}{\sqrt{1+|\nabla\varphi(\xi_i')|^2}}
+\]
+where $\tilde{\varphi}(x')=\varphi(x)-h(x')$, the difference of two pyramids. By Lemma \ref{lem2.5}, we have that $\tilde{\varphi}\in L^\infty$. By our choice of $\rho$ we have either $|x_N-h(x')|\to\infty$ or
+\begin{equation}\label{iden2.30}
+	|\tilde{\varphi}|\to0,\,|\nabla\tilde{\varphi}|\to0,\,|\nabla\varphi|\to m_*,\,S(x')\to0
+\end{equation}
+as $d(x,\bigcup\limits_{j=1}^n\Gamma_j)\to\infty$. That is as we away from the edges, if either we far away from the pyramids or two pyramid coincides.
+
+So if $|x_{N,i}-h_(x_i')|\to\infty$ as $i\to\infty$, since $\tilde{\varphi}\in L^\infty$, we get $\hmu_i\to\infty$ and the monotonicity of $\Phi$ contradicts to (\ref{iden2.29}). So it suffice to consider those point converges to a point near two pyramids, that is $\lim\limits_{i\to\infty}|x_{N,i}-h(x_i')|<\infty$. However, together with (\ref{iden2.30}), we conclude that
+\[
+	\lim_{i\to\infty}\left|\hat{\mu}_i-\frac{k}{c}(x_{N,i}-h(x_i'))\right|=0
+\]
+and by monotonicity of $\Phi$, we have
+\[
+	\lim_{i\to\infty}\left|\Phi(\mu_i)-\Phi\left(\frac{k}{c}(x_{N,i}-h(x_i'))\right)\right|=0
+\]
+which is a contradiction. Hence the claim holds and the proof is completed.
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Discussion on Free Boundary Problem}
+	In this section we consider the stefan problem
+\begin{equation}\label{iden3.1}
+\begin{cases}
+	u_t-d\Delta u=f(u),\,\mbox{ for }x\in\Omega(t),\,t>0\\
+	u=0\mbox{ and }u_t=\mu|\nabla u|^2,\,\mbox{ for }x\in\Gamma(t),\,t>0\\
+	u(x,0)=u_0(x)
+\end{cases}
+\end{equation}
+and also consider the traveling wave solution $u(x,t)=U(x',z,t)$ we obtain the profile must satisfy
+\begin{equation}
+\begin{cases}
+	-d\Delta v-c\pd{v}{x_N}-f(v),\,\mbox{ for }x\in\Omega_{x'}\\
+	u=0\mbox{ and }-c=\mu\pd{v}{x_N}(1+|\nabla_{x'}h(x')|^2),\,\mbox{ for }x\in\Gamma_{x'}
+\end{cases}
+\end{equation}
+	Assume (A1) and (A2). Also, we assume the existence of planar, that is,
+\begin{enumerate}
+	\item[(A3')] There exists $\Psi(y)$ satisfying the one dimensional problem for some $k>0$, that is, $\Psi$ satisfies
+	\begin{equation}
+	\begin{cases}
+		-\Psi''(y)-k\Psi'(y)-f(\Psi(y))=0,\,\forall\,y\in\Omega_{z}\\
+		\Phi(-\infty)=1,\,\Psi(y)=0,\quad y\in\Gamma_z\\
+		k=-\mu\Psi'(y),\,\mbox{ on }\Gamma_z
+	\end{cases}
+	\end{equation}
+\end{enumerate}
+
+So, we still have the weak subsolution on each phase
+\begin{equation}
+	\underline{v}(x)=\max_{1\leq j\leq n}\Psi_j\left(\frac{k}{c}(x_N-\ell(x'))\right)
+\end{equation}
+The proof of $\underline{v}$ satisfying the equation inequality is totally the same as in section 2. We only need to check the free boundary condition. Since the free boundary is just the pyramid, straightforward calculation except for those point on $\bigcup\limits_{j=1}^n\Gamma_j$, we have
+\[
+	-\mu\pd{\underline{v}}{x_N}(1+|\nabla_{x'} h(x')|^2)=-\mu\frac{k}{c}\Psi_j'(1+m_*^2|A_j|^2)=\frac{k^2}{c}(1+\frac{c^2-k^2}{k^2})=c
+\]
+
+
+For supersolution, because the original construction mas not free boundary, so we pick a cut of function $\chi(x)\in C^\infty(\R)$ such $\chi(x)=0$ for $x\geq 0$ and $\chi(x)=1$ as $x\leq -1$ with $\chi'(x)<0$ for all $x\leq 0$. Now define a function
+\begin{equation}
+	\bar{v}(x)=\Psi(\hat{\mu})+\varepsilon S(\alpha x')\chi(\hat{\mu})
+\end{equation}
+where $\hat{\mu}$, $S(x')$ are given in (\ref{iden2.17}) and (\ref{iden2.15}) respectively. The proof of $\bar{v}$ is a supersolution larger that $\underline{v}$ is similar as before.
+
+We remain to show it satisfies the stefan condition inequality, on the free boundary of $\bar{v}$, which is the flat surface $x_N=\frac{1}{\alpha}\varphi(\alpha x')$, we obtain
+\begin{align*}
+	&-\mu\pd{\bar{v}}{x_N}(1+|\nabla_{x'} h(x')|^2)\\
+		=&-\mu\left[\frac{k}{c}\Psi_j'\frac{1}{\sqrt{1+|\nabla\varphi(\alpha x')|^2}}+\varepsilon S(\alpha x')\chi'(0)\frac{1}{\sqrt{1+|\nabla \varphi(\alpha x')|^2}}\right](1+|\nabla\varphi(\alpha x')|^2)\\
+		=&\frac{k}{c}(k\sqrt{1+|\nabla\varphi(\alpha x)|^2})-\mu\varepsilon\chi'(0)S(\alpha x')\sqrt{1+|\nabla\varphi(\alpha x)|^2}\\
+		\leq& \frac{k}{c}(k\frac{c^2}{k^2})-o(\varepsilon)\leq c 
+\end{align*}
+which implies that $\bar{v}$ is the supersolution.
+
+
+If we establish the monotone iteration for free boundary version, we shall get a limit solution which satisfies the profile equations. The hard part of the monotone iteration are the following:
+
+\subsubsection*{Lack of weak formulation}
+
+Although we have the weak formulartion for (\ref{iden3.1})
+\begin{equation}
+\int_0^T\int_Gd\nabla u\cdot\nabla\varphi-\alpha(u)\varphi_t\,dxdt-\int_G\alpha(\tilde{u_0})\varphi(x,0)\,dx=\int_0^T\int_Gg(x,u)\varphi\,dx\,dt
+\end{equation}
+for all $\varphi\in C(\overline{G_T})\cap H^1(G_T)$ , $\varphi>0$, we do not have the weak formulation for the traveling wave, no matter initial value problem or elliptic problem. A simple guess is to adjust our coordinate into the moving coordinate of speed $c$ and hence the weak formulation becomes
+\begin{align}
+\begin{split}
+\int_0^T\int_Gd\nabla u\cdot\nabla\varphi&+c\alpha(u)\varphi_{x_N}(x',z)\,dxdt+\int_G\alpha(\tilde{u_T})\varphi(x,x_N-cT)\,dx\\ &-\int_G\alpha(\tilde{u_0})\varphi(x)\,dx=\int_0^T\int_Gg(x,u)\varphi\,dx\,dt
+\end{split}
+\end{align}
+
+\clearpage
+
+
+
+
+
+
+
+
+%%%%%%%%%% Reference %%%%%%%%%%%%%%%%%%%%
+
+
+\addcontentsline{toc}{section}{參考書目}
+
+
+\begin{thebibliography}{99}
+	
+	\bibitem{AC1979} S. Allen and J.W. Cahn, {\it A microscopic theory for antiphase boundary motion and its
+application to antiphase domain coarsening, Acta. Metall. 27 (1979), pp. 1084-1095.}
+
+	\bibitem{DG1979} E. De Giorgi, {\it Convergnece problems for functionals and operators, In: Proc. Int. Meeting
+on Recent Methods in Nonlinear Analysis, Rome, 1978, Pitagora, 1979, pp. 131-188.}
+
+	\bibitem{GG1998} N. Ghoussoub, C. Gui, {\it On a conjecture of De Giorgi and some related problems, Math. Ann. 311 (1998), no. 3, 481-491.}
+
+	\bibitem{AC2000} L. Ambrosio, X. Cabr\'e, {\it Entire solutions of semilinear elliptic equations in $\R^3$ and a conjecture of De Giorgi, J. Amer. Math. Soc. 13 (2000), 725-739.}
+
+	\bibitem{Sa2009} O. Savin, {\it Phase Transitions, Minimal Surfaces and A Conjecture of De Giorgi, Current Developments in Mathematics
+Volume 2009 (2010), 1-204}
+
+	\bibitem{DKW2008} M. del Pino, M. Kowalczyk, and Juncheng Wei {\it  A counterexample to a conjecture by De Giorgi in large dimensions C. R. Acad. Sci. Paris, Ser. I 346 (2008) 1261-1266}
+
+	\bibitem{CGHNR2004} X.F. Chen, J.S. Guo, F. Hamel, H. Ninomiya, and J.M. Roquejoffre,  Traveling waves with paraboloid
+Differential Equations, 206:399 437, 2004.
+
+	\bibitem{NT2005} H. Ninomiya and M. Taniguchi, {\it Existence and global stability of traveling curved fronts in the Allen-Cahn equations, J. Differential Equations 213 (2005), no. 1, 204--233.}
+
+	\bibitem{NT2006} H. Ninomiya and M. Taniguchi. {\it Global stability of traveling curved fronts in the Allen–Cahn equations. Discrete Contin. Dynam. Syst.15(2006), 819–832}
+
+	\bibitem{KT2011} Y.Kurokawa, M. Taniguchi, {\it Multi-dimensional pyramidal traveling fronts in the Allen-Cahn equations}
+
+	\bibitem{NT2013} W.M Ni, and M. Taniguchi, {\it Traveling fronts of pyramidal shaped in competition-diffusion systems, Networks and Heteroheneous Media, Vol. 8, Num. 1(2013), 379-395.}
+
+	\bibitem{LX1992} C.D. Levermore, J.X. Xin, {\it Multidimensional sstability of traveling waves in a bistable reaction-diffusion equation II, Comm. in Partial Differential Equation 17 (1992) 1901-1924.}
+
+	\bibitem{MNT2009} H. Matano, M. Nara, M. Taniguchi, {\it Stability of planar waves in the Allen-Cahn equations, Comm. in Parital Differential Equations Vol.34 (2009) 976-1002.}
+
+	\bibitem{CLW2013} W.J Cheng, W.T Li, and Z.C. Wang, {\it Multidimensional stability of $V$-shaped traveling fronts in the allen Cahn euqation. Sci China Math, 2013, 56: 1969-1982, doi: 10.1007/s11425-013-4699-5.}
+	
+	\bibitem{Ta2007} M. Taniguchi, {\it The uniqueness and asymptotic stability of pyramidal traveling  fronts in the Allen-Cahn equations, Journal of Differential Equations Vol. 237, No 1. (2007), 61-76}
+
+	\bibitem{Sa1976} D. Sattinger, {\it On the stability of traveling waves, Adv. in Math., 22(1976), 312-355.}
+
+	\bibitem{DG2012} Y.H. Du, Z.M. Gou, {\it The stefan problem for the Fisher-KPP equation, Journal of Differential Equations 253(2012), p.996-1035}
+
+	\bibitem{Sa1972} D.H. Sattinger {\it Monotone Methods in Nonlinear Elliptic and Parabolic Boundary Value Problems, Indiana University Mathematics Journal, Vol.21, No. 11, p.979-1000.}
+
+	\bibitem{PW1967} M.H. Protter, H.F. Weinberger, {\it Maximum Principles in Differential Equations, Prentice-Hall, 1967.}
+\end{thebibliography}
+\end{CJK}
+\end{document}
+
+
+
+
