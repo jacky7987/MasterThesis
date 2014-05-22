@@ -1,0 +1,16 @@
+\contentsline {section}{口試委員審定書}{i}
+\contentsline {section}{致謝}{ii}
+\contentsline {section}{中文摘要}{iii}
+\contentsline {section}{英文摘要}{iv}
+\contentsline {section}{\numberline {1}Introduction}{1}
+\contentsline {subsection}{\numberline {1.1}Reaction-Diffusion equation: the traveling wave solution for bistable case}{1}
+\contentsline {subsection}{\numberline {1.2}Logistic case, the free boundary problem}{2}
+\contentsline {section}{\numberline {2}Pyramidal Shaped Traveling Fronts}{3}
+\contentsline {subsection}{\numberline {2.1}Monotone Iteration}{5}
+\contentsline {subsection}{\numberline {2.2}Pyramid and the weak sub-solution}{6}
+\contentsline {subsection}{\numberline {2.3}Supersolution}{7}
+\contentsline {subsection}{\numberline {2.4}Proof of Main Theorem}{12}
+\contentsline {section}{\numberline {3}Discussion on Free Boundary Problem}{15}
+\contentsline {subsection}{\numberline {3.1}Construction for Subsolution and Supersolution}{16}
+\contentsline {subsection}{\numberline {3.2}On the Weak Formulation and Monotonic Iteration}{17}
+\contentsline {section}{參考書目}{19}

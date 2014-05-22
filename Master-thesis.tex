@@ -271,25 +271,12 @@ and we denote $\L[v]=-D\Delta v-c\pd{v}{x_N}-f(v)$ a nonlinear operator for all 
 	m_*=\frac{\sqrt{c^2-k^2}}{k}>0
 \end{equation}
 
-The main theorem is the following
-
-\begin{thm}\cite[Theorem~1.1]{KT2011}\label{thm2.1}
-	Assume $(A1)-(A3)$. Let $c>k$, and let $\bar{v}$ be given by (\ref{iden2.14}), then there exists a solution $V(x)$ of (\ref{iden2.4}) such that 
-\begin{equation}
-	\lim_{\gamma\to\infty}\sup_{x\in D(\gamma)}|V(x)-\bar{v}(x)|=0,\quad \bar{x}<V(x)<1,\quad\forall\,x\in\R^N.
-\end{equation}
-and 
-\begin{equation}
-	\pd{V}{x_N}(x)<0,\quad\forall\,x\in\R^N.
-\end{equation}
-where $D(\gamma)$ is given in (\ref{iden2.13}).
-\end{thm}
 
 
 
 \subsection{Monotone Iteration}
 
-	In this subsection, we introduce a monotone iteration established by Sattinger in \cite{Sa1972}. Throughout in this section, we consider a second order uniformly elliptic operator
+	We first introduce a monotone iteration established by Sattinger in \cite{Sa1972} which is the tool to obtain a solution from ordered lower and upper solution . Throughout in this subsection, we consider a second order uniformly elliptic operator
 \[
 	L=\sum_{i,j=1}^Na_{ij}D_{ij}+\sum_{i=1}^N b_iD_{i}
 \]
@@ -298,14 +285,14 @@ and $B$ is the boundary operator such that
 	Bu=u\mbox{ or }Bu=\pd{u}{\nu}+\beta(x)u\quad\forall\,x\in\partial D,
 \]
 where $\pd{}{\nu}$ is the outer-normal derivative and $D$ is a $C^{2,\alpha}$ domain. The main quest is to connect the sup/sub solution of the nonlinear elliptic boundary problem
-\begin{equation}\label{iden2.8}
+\begin{equation}\label{iden2.6}
 \begin{cases}
 	Lu+f(x,u)=\mbox{ in }D\\
 	Bu=g\mbox{ on }\partial D
 \end{cases}
 \end{equation} 
 to the solution of it via the parabolic flow
-\begin{equation}\label{iden2.9}
+\begin{equation}\label{iden2.7}
 \begin{cases}
 	Lu+f(x,u)-\pd{u}{t}=0\mbox{ in }D\\
 	u(x,0)=u_0(x)\\
@@ -338,7 +325,7 @@ This Theorem tells us that our subsolution will increase and supersolution will 
 
 \subsection{Pyramid and the weak sub-solution}
 
-	We first give the definition of Pyramid. Given $\{A_j\}$, $1\leq j\leq n$ be $n$ distinct unit vectors in $\R^{N-1}$. Each vector admits a plane in $\R^N$ through
+	We start with the definition of Pyramids. Given $\{A_j\}$, $1\leq j\leq n$ be $n$ distinct unit vectors in $\R^{N-1}$. Each vector admits a plane in $\R^N$ through
 \[
 	x_N=\ell_j(x')\coloneqq m_*A_j\cdot x'
 \]
@@ -348,12 +335,12 @@ We give some notations:
 \begin{align}
 	\Omega_j&=\{x'\in\R^{N-1}\,|\,\ell(x')=\ell_j(x')\},\mbox{ the base points,}\\
 	\Gamma_i&=\{x\in\R^N\,|\,x_N=\ell_j(x)\},\mbox{ the edge of pyramid,}\\
-	D(\gamma)&=\left\{x\in\R^N\,|\,d\left(x,\bigcup_{j=1}^n\Gamma_i\right)>\gamma\right\},\mbox{ points away from the edge.}\label{iden2.13}
+	D(\gamma)&=\left\{x\in\R^N\,|\,d\left(x,\bigcup_{j=1}^n\Gamma_i\right)>\gamma\right\},\mbox{ points away from the edge.}\label{iden2.11}
 \end{align}
 
 
 	To construct a subsolution of pyramidal shaped, we pose a planar solution $\Phi\left(\frac{k}{c}(x_N-\ell_j(x'))\right)$ on each plane $x_N=\ell_j(x')$. Then by taking maximum, we get the subsolution, that is,
-\begin{equation}\label{iden2.14}
+\begin{equation}\label{iden2.12}
 	\underline{v}\coloneqq\max_{1\leq j\leq n}\Phi\left(\frac{k}{c}(x_N-\ell_j(x'))\right).
 \end{equation}
 
@@ -369,25 +356,22 @@ by (A3).
 
 
 \subsection{Supersolution}
-	In this section, we show that the function
-\[
-	\bar{v}=\Phi(\hat{\mu})+\varepsilon S(\alpha x')
-\]
-is a supersolution. The ideal of the supersolution is we pose the planar wave with a slightly addition term on a flat surface, where the edge at infinity keeps the pyramidal shaped and the additional term takes positive value near the edges and decade to $0$ fast as $\xi=\alpha x$  move away from the edges. The parameter $\alpha$ is small to rescale the spatial variables that makes the surface flat enough. Also, the supersolution tends the planar wave as $\alpha$  tends to $0^+$ in a slower speed $k$, so if we use the faster moving coordinate of speed $c$, we expect that $U(x,t;\bar{v})$ is monotonic decreasing in $t$. Hence it seems that $\bar{v}$ is a supersolution for elliptic problem
+	The ideal of the supersolution is the following: we pose the planar wave with a slightly addition term on a flat surface, where the edge at infinity keeps the pyramidal shaped and the additional term takes positive value near the edges and decade to $0$ fast as $\xi=\alpha x$  move away from the edges. The parameter $\alpha$ is small to rescale the spatial variables that makes the surface flat enough. Also, the supersolution tends the planar wave as $\alpha$  tends to $0^+$ in a slower speed $k$, so if we use the faster moving coordinate of speed $c$, we expect that $U(x,t;\bar{v})$ is monotonic decreasing in $t$. Hence it seems that $\bar{v}$ is a supersolution for elliptic problem
 
 	Now let $\tilde{\rho}(r)\in C^\infty[0,\infty)$ be a smooth kernel such that $\tilde{\rho}(r)$ is $1$ for $\rho$ small and asymptotic behavior is $e^{-r}$. Set a radial symmetry planet like kernel $\rho(x)=\tilde{\rho}(|x|)$. Directly calculation one can show that
 \[
 	(\rho*x_i)(y')=y'\mbox{ and hence }(\rho*\ell_j)(x')=\ell_j(x').
 \]
 We put $\varphi(x')=(\rho*\ell)(x')$ and $x_N=\varphi(x')$ is called the mollified pyramid for a pyramid $x_N=\ell(x')$. And we put
-\begin{equation}\label{iden2.15}
+
+\begin{equation}\label{iden2.13}
 	S(x')=\frac{c}{\sqrt{1+|\nabla\varphi(x')|^2}}-k
 \end{equation}
 $S$ indicates diffenece between normal vector direction effect of  speed $c$ on the mollified pyramid and $k$. 
 
 We gives two important lemmas about the estimations for the mollified pyramid and $S$.
 
-\begin{lemma}\cite[Lemma 2.2]{KT2011}\label{lem2.5}
+\begin{lemma}\cite[Lemma 2.2]{KT2011}\label{lem2.4}
 	Let $\varphi$ and $S$ is given as above. Then one has
 \[
 	\ell(x')<\varphi(x')\leq \ell(x')+m^*\int_{\R^N}|y'|\rho(y')\,dy,\quad\forall\,x'\in\R^{N-1}
@@ -402,7 +386,7 @@ and
 for all $|\alpha|\geq 0$.
 \end{lemma}
 
-\begin{lemma}\cite[Proposition 2.3]{KT2011}\label{lem2.6}
+\begin{lemma}\cite[Proposition 2.3]{KT2011}\label{lem2.5}
 	One also have
 \[
 	0<\inf_{x'\in\R^{N-1}}\frac{\varphi(x')-h(x')}{S(x')}\leq\sup_{x'\in\R^{N-1}}\frac{\varphi(x')-h(x')}{S(x')}<\infty.
@@ -423,19 +407,20 @@ and set $\alpha x=\xi$, then we can represent the flat plane by $\xi_N=\varphi(\
 	\frac{|x_N-\frac{1}{\alpha}\varphi(\alpha x')|}{\sqrt{1+|\nabla\varphi(\alpha x')|^2}}
 \]
 So we define
-\begin{equation}\label{iden2.17}
+\begin{equation}\label{iden2.15}
 	\hmu=\frac{x_N-\frac{1}{\alpha}\varphi(\alpha x')}{\sqrt{1+|\nabla\varphi(\alpha x')|^2}}.
 \end{equation}
 Define 
-\begin{equation}\label{iden2.18}
+\begin{equation}\label{iden2.16}
 	\bar{v}=\Phi(\hat{\mu})+\varepsilon S(\alpha x')\coloneqq \Phi(\hmu)+\sigma(x').
 \end{equation}
 where $\varepsilon>0$ is undetermined small parameter. 
 
 
 
-\begin{thm}
-	Let $\bar{v}$ is given by (\ref{iden2.18}), then $\bar{v}$ is a supersolution of (\ref{iden2.4}) with $\underline{v}<\bar{v}$.
+\begin{thm}\cite[Lemma 4.1]{KT2011}\label{thm2.6}
+	
+	Let $\bar{v}$ is given by (\ref{iden2.16}), then $\bar{v}$ is a supersolution of (\ref{iden2.4}) with $\underline{v}<\bar{v}$.
 \end{thm}
 \begin{proof}
 	Simple and straightforward calculation we can obtain the following identities which involved in the term of $\L[\bar{v}]$:
@@ -477,18 +462,18 @@ Observe that, all the terms in $Y$ can be dominated as follow:
 \[
 	|Y(\xi,y;\varepsilon,\alpha)|\leq \max\{|\Phi(y)|,|y\Phi(y)|,|y\Phi''(y)|,|y^2\Phi''(y)|\}\cdot\left(\sum_{i=1}^n|G_i|+|H_i|+2|F_i|+|F_i|^2+\left|\pdd{S}{\xi}\right|\right)
 \]
-Since those terms in $F_i,G_i,H_i$ is consisting of the second or third order derivative of $\varphi$, so Lemma \ref{lem2.6} can be applied. To estimate the maximum of the planar wave, we need a lemma
+Since those terms in $F_i,G_i,H_i$ is consisting of the second or third order derivative of $\varphi$, so Lemma \ref{lem2.5} can be applied. To estimate the maximum of the planar wave, we need a lemma
 
-\begin{lemma}\label{lem2.8}
+\begin{lemma}\label{lem2.7}
 	Under assumption (A1) and (A3), $\Phi(y)$ as in (\ref{iden2.1}) satisfies
 \begin{align*}
-	-\Phi'(y)>0\quad\forall\,y\in\R\\
-	|\Phi'|,|\Phi''|\,\leq K_0e^{-\kappa_0|y|},\quad |y\Phi'|\leq\frac{2K_0}{e\kappa_0}e^{-\frac{\kappa}{2}|y|}
+	&-\Phi'(y)>0\quad\forall\,y\in\R\\
+	|\Phi'|,|\Phi''|\,&\leq K_0e^{-\kappa_0|y|},\quad |y\Phi'|\leq\frac{2K_0}{e\kappa_0}e^{-\frac{\kappa_0}{2}|y|}
 \end{align*}
 for some positive constant $K_0$ and $\kappa_0$.
 \end{lemma} 
 
-Also, from the assupmtion of $f$ , there exists $\delta_*\in(0,\frac{1}{4})$ such that
+Also, from the assumption of $f$ , there exists $\delta_*\in(0,\frac{1}{4})$ such that
 \[
 	-f'(s)>\frac{1}{2}\min\{-f'(1),-f'(-1)\}\mbox{ if }|s+1|<2\delta_*\mbox{ or }|s-1|<2\delta_*,
 \] 
@@ -504,7 +489,7 @@ So there exists $\nu_*>0$, independent to $\xi',\alpha$ and $\varepsilon$, such 
 \]
 for all $\xi'\in\R^{N-1}$, $y\in\R^N$, $\varepsilon,\alpha\in(0,1)$ and we conclude that
 
-\begin{equation}\label{iden2.22}
+\begin{equation}\label{iden2.20}
 	L[\bar{v}]\geq S(\xi)\left(-\Phi'(\hmu)+\varepsilon\int_0^1(-f'(\Phi(\hmu)+s\sigma))\,ds-\alpha\nu_*\right).
 \end{equation}
 
@@ -512,7 +497,7 @@ Set
 \[
 	\omega=\inf_{x'\in\R^{N-1}}\frac{\varphi(x')-\ell(x')}{S(x')}\in(0,\infty)
 \]
-by Lemma \ref{lem2.6}. 
+by Lemma \ref{lem2.5}. 
 
 Now we pick
 \begin{align}
@@ -525,13 +510,13 @@ For (1), first observe that for all $s\in[0,1]$, $|s\varepsilon S|\leq |s\vareps
 \[
 	\Phi(\hmu)+\varepsilon S<-1+2\delta_*\mbox{ or }\Phi(\hmu)+\varepsilon S>1+2\delta_*
 \]
-and hence $-f(\bar{v})>\beta$ in this case. So (\ref{iden2.22}) becomes
+and hence $-f(\bar{v})>\beta$ in this case. So (\ref{iden2.20}) becomes
 \[
 	\L[\bar{v}]\geq S(\xi')\left(-\Phi'(\hmu)+\varepsilon\beta-\alpha\nu_*\right)>0
 \]
 since $S,-\Phi'>$ and our choice of $\alpha$.
 
-In case (2), $-\Phi(\hmu)\geq\lambda_*$, and $-\varepsilon\int_0^1f'(\Phi+s\sigma)\,ds\geq-\varepsilon M$, so (\ref{iden2.22}) becomes
+In case (2), $-\Phi(\hmu)\geq\lambda_*$, and $-\varepsilon\int_0^1f'(\Phi+s\sigma)\,ds\geq-\varepsilon M$, so (\ref{iden2.20}) becomes
 \[
 	\L[\bar{v}]\geq S(\xi')\left(\lambda_*-\varepsilon M-\alpha\nu_*\right)>0
 \]
@@ -558,8 +543,8 @@ After substitue the definition of $\hmu$ and balanced with $h_j(x')$ and simple 
 \[
 	\frac{c}{\alpha}\left(\frac{1}{\sqrt{1+|\nabla\varphi|^2}}\right)\left(\frac{\varphi(\xi')-h_j(\xi')}{S(\xi')}\right)<x_N-h_j(x').
 \]
-So from the definition of $\omega$ and Lemma \ref{lem2.6}, we obtain
-\begin{equation}\label{iden2.25}
+So from the definition of $\omega$ and Lemma \ref{lem2.5}, we obtain
+\begin{equation}\label{iden2.24}
 	\frac{k\omega}{\alpha}<\frac{c}{\alpha}\frac{\omega}{\sqrt{1+|\nabla\varphi|^2}}<x_N-h_j(x')
 \end{equation}
 
@@ -569,11 +554,11 @@ To let $\Phi'$ involve, directly compare $\bar{v}$ and $\underline{v}$,  since $
 	\bar{v}-\underline{v}\geq\frac{(x_N-h_j(x')S(\xi'))}{c}\times\int_0^1\Phi'\left(\frac{\theta}{\sqrt{1+|\nabla\varphi|^2}}+\frac{k}{c}(1-\theta)\cdot(x_N-h_j(x'))\right)\,d\theta+\epsilon S(\xi')
 \]
 
-By Lemma \ref{lem2.5} and (\ref{iden2.25}), we have that
+By Lemma \ref{lem2.4} and (\ref{iden2.24}), we have that
 \[
 	\bar{v}-\Phi\left(\frac{k}{c}(x_N-h(x'))\right)\geq-\frac{S(\xi')}{c}\sup_{|y|\geq\frac{k^2\omega}{c\alpha}}\left|\frac{c}{k}y\Phi'(y)\right|+\varepsilon S
 \]
-By Lemma \ref{lem2.8} and our choice of $\alpha$, we have
+By Lemma \ref{lem2.7} and our choice of $\alpha$, we have
 \begin{align*}
 	\frac{1}{k}\sup_{|y|\geq\frac{k^2\omega}{c\alpha}}|y\Phi'(y)|&\leq\frac{1}{k}\frac{2K_0}{e\kappa_0}\exp(-\frac{\kappa_0}{2}\frac{k^2w}{c\alpha})\\
 		&<\frac{1}{k}\frac{2K_0}{e\kappa_0}\exp(-\frac{\kappa_0k^2\omega}{2c})\cdot\exp(\frac{k^2\omega\kappa_0}{2c})\cdot\frac{ek\kappa_0\varepsilon}{4K_0}\\
@@ -595,7 +580,22 @@ and the proof is completed.
 
 
 
-\subsection{Proof of Theorem \ref{thm2.1}}
+\subsection{Proof of Main Theorem}
+
+The main theorem is the following
+
+\begin{thm}\cite[Theorem~1.1]{KT2011}\label{thm2.8}
+	Assume $(A1)-(A3)$. Let $c>k$, and let $\bar{v}$ be given by (\ref{iden2.12}), then there exists a solution $V(x)$ of (\ref{iden2.4}) such that 
+\begin{equation}
+	\lim_{\gamma\to\infty}\sup_{x\in D(\gamma)}|V(x)-\bar{v}(x)|=0,\quad \bar{x}<V(x)<1,\quad\forall\,x\in\R^N.
+\end{equation}
+and 
+\begin{equation}
+	\pd{V}{x_N}(x)<0,\quad\forall\,x\in\R^N.
+\end{equation}
+where $D(\gamma)$ is given in (\ref{iden2.11}).
+\end{thm}
+
 
 	First we need a nonlienar version of comparison theorem for nonlinear parabolic equations
 \begin{thm}\cite[Theorem 12, p187-188]{PW1967}
@@ -625,7 +625,9 @@ then
 \]
 \end{thm}
 
-Apply theorem \ref{thm2.4} to the sup/subsolution we constuction in previous sections and comparison Theorem above, we obtain that
+\begin{proof}[Proof of Theorem \ref{thm2.8}]
+
+	Apply theorem \ref{thm2.4} to the sup/subsolution we constucted in previous subsections and by the comparison theorem above, we obtain that
 \[
 	\underline{v}(x)\leq U(x,t';\underline{v})\leq U(x,t;\bar{v})\leq\bar{v}
 \]
@@ -653,7 +655,7 @@ However, from the definition of $\hmu$, we have
 \[
 	\hmu_i=\frac{x_{N,i}-h(x_i')-\frac{1}{\alpha}\tilde{\varphi}(\xi_i')}{\sqrt{1+|\nabla\varphi(\xi_i')|^2}}
 \]
-where $\tilde{\varphi}(x')=\varphi(x)-h(x')$, the difference of two pyramids. By Lemma \ref{lem2.5}, we have that $\tilde{\varphi}\in L^\infty$. By our choice of $\rho$ we have either $|x_N-h(x')|\to\infty$ or
+where $\tilde{\varphi}(x')=\varphi(x)-h(x')$, the difference of two pyramids. By Lemma \ref{lem2.4}, we have that $\tilde{\varphi}\in L^\infty$. By our choice of $\rho$ we have either $|x_N-h(x')|\to\infty$ or
 \begin{equation}\label{iden2.30}
 	|\tilde{\varphi}|\to0,\,|\nabla\tilde{\varphi}|\to0,\,|\nabla\varphi|\to m_*,\,S(x')\to0
 \end{equation}
@@ -669,7 +671,7 @@ and by monotonicity of $\Phi$, we have
 \]
 which is a contradiction. Hence the claim holds and the proof is completed.
 
-
+\end{proof}
 
 
 
@@ -681,18 +683,23 @@ which is a contradiction. Hence the claim holds and the proof is completed.
 
 
 \section{Discussion on Free Boundary Problem}
-	In this section we consider the stefan problem
+	In this section we consider the Stefan problem in $\R^N$
 \begin{equation}\label{iden3.1}
 \begin{cases}
-	u_t-d\Delta u=g(x,u),\,\mbox{ for }x\in\Omega(t),\,t>0\\
+	u_t-d\Delta u=f(u),\,\mbox{ for }x\in\Omega(t),\,t>0\\
 	u=0\mbox{ and }u_t=\mu|\nabla u|^2,\,\mbox{ for }x\in\Gamma(t),\,t>0\\
 	u(x,0)=u_0(x)
 \end{cases}
 \end{equation}
-and also consider the traveling wave solution $u(x,t)=U(x',z,t)$, $z=x_N-ct$, then we have
+where 
+\[
+	\Omega(t)=\{x\in\R^N\,|\, u(x,t)>0\},\quad\Gamma(t)=\partial\Omega(t)
+\]
+
+We are also interesting in the traveling wave solution $u(x,t)=U(x',z,t)$, $z=x_N-ct$, then we have
 \begin{equation}\label{iden3.2}
 \begin{cases}
-	U_t=d\Delta U+c\pd{U}{x_N}+g(x,U)\mbox{ in }\Omega_t\\
+	U_t=d\Delta U+c\pd{U}{x_N}+f(U)\mbox{ in }\Omega_t\\
 	U=0\mbox{ and }U_t-c\pd{U}{x_N}=\mu|\nabla U|^2\mbox{ on }\Gamma_t\\
 	U|_{t=0}=u_0(x).
 \end{cases}
@@ -700,39 +707,42 @@ and also consider the traveling wave solution $u(x,t)=U(x',z,t)$, $z=x_N-ct$, th
 and the profile must satisfy
 \begin{equation}\label{iden3.3}
 \begin{cases}
-	-d\Delta v-c\pd{v}{x_N}-g(x,v),\,\mbox{ for }x\in\Omega_{x'}\\
-	u=0\mbox{ and }-c=\mu\pd{v}{x_N}(1+|\nabla_{x'}h(x')|^2),\,\mbox{ for }x\in\Gamma_{x'}
+	-d\Delta v-c\pd{v}{x_N}-f(v)=0,\mbox{ in }\Omega_{x'}=\{z<0\}\\
+	u=0\mbox{ and }-c=\mu\pd{v}{x_N}(1+|\nabla_{x'}h(x')|^2),\,\mbox{ on }\Gamma_{x'}=\{z=0\}
 \end{cases}
 \end{equation}
-	We will focus on the Allen-Cahn type equation as well, that is $g(x,u)=f(u)$ and $f(u) satisfies$ (A1) and (A2). Also, we assume the existence of planar wave, that is,
+where
+
+	We still consider bistable case, that is,  $f(u)$ satisfies (A1) and (A2) given in section 2. Also, we assume the existence of planar wave, that is,
 \begin{enumerate}
 	\item[(A3')] There exists $\Psi(y)$ satisfying the one dimensional semi-wave problem for some $k>0$, that is, $\Psi$ satisfies
 	\begin{equation}
 	\begin{cases}
-		-\Psi''(y)-k\Psi'(y)-f(\Psi(y))=0,\,\forall\,y\in\Omega_{z}\\
-		\Phi(-\infty)=1,\,\Psi(y)=0,\quad y\in\Gamma_z\\
-		k=-\mu\Psi'(y),\,\mbox{ on }\Gamma_z
+		-\Psi''(y)-k\Psi'(y)-f(\Psi(y))=0\mbox{ for }y\in(-\infty,0)\\
+		\Phi(-\infty)=1,\,\Psi(0)=0,\,\Psi(y)>0\mbox{ for }y\in(-\infty,0)
 	\end{cases}
 	\end{equation}
-
-For the existence of planar semi-wave, one can see \cite{DL2013} Theorem 6.2.
+For the existence of planar semi-wave, one can see \cite[Proposition 1.8]{DL2013}.
 \end{enumerate}
 
-So, we still have the weak subsolution on each phase
+
+\subsection{Construction for Subsolution and Supersolution}
+
+Similar ly, we can pose the planar wave on each face and take maximum to obtain the weak subsolution
 \begin{equation}
 	\underline{v}(x)=\max_{1\leq j\leq n}\Psi\left(\frac{k}{c}(x_N-\ell_j(x'))\right)
 \end{equation}
-The proof of $\underline{v}$ satisfying the equation inequality is totally the same as in section 2. We only need to check the free boundary condition. Since the free boundary is just the pyramid, straightforward calculation except for those point on $\bigcup\limits_{j=1}^n\Gamma_j$, we have
+The proof of $\underline{v}$ satisfying the equation inequality is totally the same as in section 2. We only need to check the free boundary condition. Since the free boundary is just the pyramid, straightforward calculation,  except for those point on $\bigcup\limits_{j=1}^n\Gamma_j$, we have
 \[
 	-\mu\pd{\underline{v}}{x_N}(1+|\nabla_{x'} h(x')|^2)=-\mu\frac{k}{c}\Psi_j'(1+m_*^2|A_j|^2)=\frac{k^2}{c}(1+\frac{c^2-k^2}{k^2})=c
 \]
 
 
-For supersolution, because the original construction mas not free boundary, so we pick a cut of function $\chi(x)\in C^\infty(\R)$ such $\chi(x)=0$ for $x\geq 0$ and $\chi(x)=1$ as $x\leq -1$ with $\chi'(x)<0$ for all $x\leq 0$. Now define a function
+For supersolution, because the original construction has not free boundary, so we pick a cut of function $\chi(x)\in C^\infty(\R)$ such $\chi(x)=0$ for $x\geq 0$ and $\chi(x)=1$ for $x\leq -1$ with $\chi'(x)<0$ for all $x\leq 0$. Now define a function
 \begin{equation}
 	\bar{v}(x)=\Psi(\hat{\mu})+\varepsilon S(\alpha x')\chi(\hat{\mu})
 \end{equation}
-where $\hat{\mu}$, $S(x')$ are given in (\ref{iden2.17}) and (\ref{iden2.15}) respectively. The proof of $\bar{v}$ is a supersolution larger that $\underline{v}$ is similar as before.
+where $\hat{\mu}$, $S(x')$ are given in (\ref{iden2.15}) and (\ref{iden2.13}) respectively. The proof of $\bar{v}$ is a supersolution larger that $\underline{v}$ is similar as before.
 
 We remain to show it satisfies the stefan condition inequality, on the free boundary of $\bar{v}$, which is the flat surface $x_N=\frac{1}{\alpha}\varphi(\alpha x')$, we obtain
 \begin{align*}
@@ -753,15 +763,9 @@ which implies that $\bar{v}$ is the supersolution.
 	Assume that $\Omega_0$ is smooth, the initial condition satisfies
 \begin{equation}
 	u_0\in C(\overline{\Omega_0})\cap H^1(\Omega_0),\,u_0>0 \mbox{ in } \Omega,\, u_0=0 \mbox{ on }\partial\Omega_0
-\end{equation} and $g$ satisfies 
-\begin{enumerate}[$(i)$]
-	\item $g(x,u)$ is continuous for $(x,u)\in \R^N\times[0,\infty)$.
-	\item $g(x,u)$ is locally Lipschitz in $u$ uniformly for $x\in\R^N$.
-	\item $g(x,0)=0$
-	\item There exists $c^*>0$ such that $g(x,u)\leq c^*u$ for all $x\in\R^N$ and $u\geq 0$.
-\end{enumerate}
+\end{equation}
 A nonnegative function $u\in H^1(G_T)\cap L^\infty(G_T)$, $G_T=G\times[0,T]$, is called a \named{weak solution} of (\ref{iden3.1})  over $G_T$ if
-\begin{equation}	\int_0^T\int_G[d\nabla_x\cdot\nabla_x\phi-\alpha(u)\phi_t]\,dxdt-\int_G\alpha(\tilde{u}_0)\phi(0,x)\,dx=\int_0^T\int_Gg(x,u)\phi\,dxdt
+\begin{equation}	\int_0^T\int_G[d\nabla_x\cdot\nabla_x\phi-\alpha(u)\phi_t]\,dxdt-\int_G\alpha(\tilde{u}_0)\phi(0,x)\,dx=\int_0^T\int_Gf(u)\phi\,dxdt
 \end{equation}
 for every function $\phi\in C(\overline{G_T})\cap H^1(G_T)$ such that $\phi=0$ on $(\{T\}\times G)\cup([0,T]\times\partial G)$, where
 \begin{align}
@@ -800,7 +804,9 @@ Suppose that $u_0$ is the weak subsolution(supersolution) (\ref{iden3.3}) and $u
 Then $u_t\geq(\leq) 0$.
 \end{lemma}
 
-
+\begin{thm}
+	Suppose that $u_0$ and $v_0$ are subsolution and supersolution of (\ref{iden3.3}) respectively and $u(t,x)$ and $v(t,x)$ are solution of the parabolic problem whose initial data is $u_0$ and $v_0$ respectively. Then $u(t,x)\to\tilde{u}(x)$ and $v(t,x)\to\tilde{v}(x)$ as $t\to\infty$ are two classical solution of (\ref{iden3.3}).
+\end{thm}
 \clearpage
 
 
@@ -861,6 +867,8 @@ Differential Equations, 206:399 437, 2004.
 	\bibitem{PW1967} M.H. Protter, H.F. Weinberger, {\it Maximum Principles in Differential Equations, Prentice-Hall, 1967.}
 
 	\bibitem{DL2013} Y.H. Du, B.D Lou, {\it Spreading and vanishing in nonlinear diffusion problems with free boundaries, J. Eur. Math. Soc., to appear. (arXiv1301.5373)}
+
+	\
 \end{thebibliography}
 \end{CJK}
 \end{document}
