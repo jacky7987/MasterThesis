@@ -684,21 +684,29 @@ which is a contradiction. Hence the claim holds and the proof is completed.
 	In this section we consider the stefan problem
 \begin{equation}\label{iden3.1}
 \begin{cases}
-	u_t-d\Delta u=f(u),\,\mbox{ for }x\in\Omega(t),\,t>0\\
+	u_t-d\Delta u=g(x,u),\,\mbox{ for }x\in\Omega(t),\,t>0\\
 	u=0\mbox{ and }u_t=\mu|\nabla u|^2,\,\mbox{ for }x\in\Gamma(t),\,t>0\\
 	u(x,0)=u_0(x)
 \end{cases}
 \end{equation}
-and also consider the traveling wave solution $u(x,t)=U(x',z,t)$ we obtain the profile must satisfy
-\begin{equation}
+and also consider the traveling wave solution $u(x,t)=U(x',z,t)$, $z=x_N-ct$, then we have
+\begin{equation}\label{iden3.2}
 \begin{cases}
-	-d\Delta v-c\pd{v}{x_N}-f(v),\,\mbox{ for }x\in\Omega_{x'}\\
+	U_t=d\Delta U+c\pd{U}{x_N}+g(x,U)\mbox{ in }\Omega_t\\
+	U=0\mbox{ and }U_t-c\pd{U}{x_N}=\mu|\nabla U|^2\mbox{ on }\Gamma_t\\
+	U|_{t=0}=u_0(x).
+\end{cases}
+\end{equation}
+and the profile must satisfy
+\begin{equation}\label{iden3.3}
+\begin{cases}
+	-d\Delta v-c\pd{v}{x_N}-g(x,v),\,\mbox{ for }x\in\Omega_{x'}\\
 	u=0\mbox{ and }-c=\mu\pd{v}{x_N}(1+|\nabla_{x'}h(x')|^2),\,\mbox{ for }x\in\Gamma_{x'}
 \end{cases}
 \end{equation}
-	Assume (A1) and (A2). Also, we assume the existence of planar, that is,
+	We will focus on the Allen-Cahn type equation as well, that is $g(x,u)=f(u)$ and $f(u) satisfies$ (A1) and (A2). Also, we assume the existence of planar wave, that is,
 \begin{enumerate}
-	\item[(A3')] There exists $\Psi(y)$ satisfying the one dimensional problem for some $k>0$, that is, $\Psi$ satisfies
+	\item[(A3')] There exists $\Psi(y)$ satisfying the one dimensional semi-wave problem for some $k>0$, that is, $\Psi$ satisfies
 	\begin{equation}
 	\begin{cases}
 		-\Psi''(y)-k\Psi'(y)-f(\Psi(y))=0,\,\forall\,y\in\Omega_{z}\\
@@ -706,11 +714,13 @@ and also consider the traveling wave solution $u(x,t)=U(x',z,t)$ we obtain the p
 		k=-\mu\Psi'(y),\,\mbox{ on }\Gamma_z
 	\end{cases}
 	\end{equation}
+
+For the existence of planar semi-wave, one can see \cite{DL2013} Theorem 6.2.
 \end{enumerate}
 
 So, we still have the weak subsolution on each phase
 \begin{equation}
-	\underline{v}(x)=\max_{1\leq j\leq n}\Psi_j\left(\frac{k}{c}(x_N-\ell(x'))\right)
+	\underline{v}(x)=\max_{1\leq j\leq n}\Psi\left(\frac{k}{c}(x_N-\ell_j(x'))\right)
 \end{equation}
 The proof of $\underline{v}$ satisfying the equation inequality is totally the same as in section 2. We only need to check the free boundary condition. Since the free boundary is just the pyramid, straightforward calculation except for those point on $\bigcup\limits_{j=1}^n\Gamma_j$, we have
 \[
@@ -734,20 +744,62 @@ We remain to show it satisfies the stefan condition inequality, on the free boun
 which implies that $\bar{v}$ is the supersolution.
 
 
-If we establish the monotone iteration for free boundary version, we shall get a limit solution which satisfies the profile equations. The hard part of the monotone iteration are the following:
 
-\subsubsection*{Lack of weak formulation}
 
-Although we have the weak formulartion for (\ref{iden3.1})
+\subsection{On the Weak Formulation and Monotonic Iteration}
+
+	We first review the weak formulation for problem (\ref{iden3.1}) given in \cite{DG2012}.
+\begin{defn}
+	Assume that $\Omega_0$ is smooth, the initial condition satisfies
 \begin{equation}
-\int_0^T\int_Gd\nabla u\cdot\nabla\varphi-\alpha(u)\varphi_t\,dxdt-\int_G\alpha(\tilde{u_0})\varphi(x,0)\,dx=\int_0^T\int_Gg(x,u)\varphi\,dx\,dt
+	u_0\in C(\overline{\Omega_0})\cap H^1(\Omega_0),\,u_0>0 \mbox{ in } \Omega,\, u_0=0 \mbox{ on }\partial\Omega_0
+\end{equation} and $g$ satisfies 
+\begin{enumerate}[$(i)$]
+	\item $g(x,u)$ is continuous for $(x,u)\in \R^N\times[0,\infty)$.
+	\item $g(x,u)$ is locally Lipschitz in $u$ uniformly for $x\in\R^N$.
+	\item $g(x,0)=0$
+	\item There exists $c^*>0$ such that $g(x,u)\leq c^*u$ for all $x\in\R^N$ and $u\geq 0$.
+\end{enumerate}
+A nonnegative function $u\in H^1(G_T)\cap L^\infty(G_T)$, $G_T=G\times[0,T]$, is called a \named{weak solution} of (\ref{iden3.1})  over $G_T$ if
+\begin{equation}	\int_0^T\int_G[d\nabla_x\cdot\nabla_x\phi-\alpha(u)\phi_t]\,dxdt-\int_G\alpha(\tilde{u}_0)\phi(0,x)\,dx=\int_0^T\int_Gg(x,u)\phi\,dxdt
 \end{equation}
-for all $\varphi\in C(\overline{G_T})\cap H^1(G_T)$ , $\varphi>0$, we do not have the weak formulation for the traveling wave, no matter initial value problem or elliptic problem. A simple guess is to adjust our coordinate into the moving coordinate of speed $c$ and hence the weak formulation becomes
+for every function $\phi\in C(\overline{G_T})\cap H^1(G_T)$ such that $\phi=0$ on $(\{T\}\times G)\cup([0,T]\times\partial G)$, where
 \begin{align}
-\begin{split}
-\int_0^T\int_Gd\nabla u\cdot\nabla\varphi&+c\alpha(u)\varphi_{x_N}(x',z)\,dxdt+\int_G\alpha(\tilde{u_T})\varphi(x,x_N-cT)\,dx\\ &-\int_G\alpha(\tilde{u_0})\varphi(x)\,dx=\int_0^T\int_Gg(x,u)\varphi\,dx\,dt
-\end{split}
+	\alpha(w)&=\begin{cases}
+		w\mbox{ if }w> 0\\
+		w-d\mu^{-1}\mbox{ if }w\leq 0,
+	\end{cases}\\
+	\tilde{u}_0(x)&=\begin{cases}
+		u_0(x),\mbox{ for }x\in\Omega_0\\
+		0, \mbox{ for }x\in \R^N\setminus\Omega_0.
+	\end{cases}
 \end{align}
+\end{defn}
+	To constructe the monotone iteration as the standard cases, we also need the  weak formulation about the wave profile equation. We first note that the weak formulation for the parabolic problem (\ref{iden3.2}) is
+\begin{equation}
+	\int_0^T\int_Gd\nabla U\cdot\nabla\psi-\alpha(U)\psi_t+c\alpha(U)\psi_{x_N}\,dx\,dt-\int_Gu_0(x)\psi(x)\,dx=\int_0^T\int_G f(u)\psi\,dxdt
+\end{equation}
+	
+\begin{defn}
+	Assume $g$ as before. We say that a function $v\in H^1(\bar{G})\cap L^\infty(G)$ is a weak subsolution for (\ref{iden3.3}) if
+\begin{equation}
+	\int_Gd\nabla_xv\cdot\nabla\psi+c\alpha(v)\psi_{x_N}\,dx\leq \int_Gg(x,u)\psi(x)\,dx
+\end{equation}
+for all $\psi\in C(\bar{G})\cap H^1(G)$. Similarly we can define the weak supersolution.
+\end{defn}
+
+\begin{lemma} 
+Suppose that $u_0$ is the weak subsolution(supersolution) (\ref{iden3.3}) and $u(x,t)$ is the weak solution of
+\[
+\begin{cases}
+	u_t=d\Delta u+cu_{x_N}+g(x,u)\mbox{ in }\Omega_t\\
+	u(x)=0\mbox{ and } 	u_t-cu_{x_N}=\mu|\nabla u|^2\mbox{ on }\Gamma_t\\
+	u(0,x)=u_0(x) \mbox{ in } \Omega_0
+\end{cases}
+\]
+Then $u_t\geq(\leq) 0$.
+\end{lemma}
+
 
 \clearpage
 
@@ -807,6 +859,8 @@ Differential Equations, 206:399 437, 2004.
 	\bibitem{Sa1972} D.H. Sattinger {\it Monotone Methods in Nonlinear Elliptic and Parabolic Boundary Value Problems, Indiana University Mathematics Journal, Vol.21, No. 11, p.979-1000.}
 
 	\bibitem{PW1967} M.H. Protter, H.F. Weinberger, {\it Maximum Principles in Differential Equations, Prentice-Hall, 1967.}
+
+	\bibitem{DL2013} Y.H. Du, B.D Lou, {\it Spreading and vanishing in nonlinear diffusion problems with free boundaries, J. Eur. Math. Soc., to appear. (arXiv1301.5373)}
 \end{thebibliography}
 \end{CJK}
 \end{document}
